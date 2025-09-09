@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(DiskDumpView
     src/main.cpp
+    src/fs/fsMagicNums.cpp
     src/partTables/partitionTables.cpp
     src/partTables/mbrTable.cpp
     src/partTables/gptTable.cpp

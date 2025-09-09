@@ -4,6 +4,12 @@
 #include <string>
 #include <unordered_map>
 
+enum PartitionScheme {
+    PARTITION_SCHEME_MBR,
+    PARTITION_SCHEME_GPT,
+    PARTITION_SCHEME_UNKNOWN
+};
+
 // https://en.wikipedia.org/wiki/Partition_type
 enum MBRPartitionType {
     EMPTY = 0x00,
@@ -30,9 +36,7 @@ enum MBRPartitionType {
 };
 
 const std::unordered_map<std::string, std::string> GPTPartitionTypeGUIDs = {
-    {"EBD0A0A2-B9E5-4433-87C0-68B6B72699C7", "WINDOWS_BDP"},
     {"0FC63DAF-8483-4772-8E79-3D69D8477DE4", "LINUX_FS"},
-    {"A19D880F-05FC-4D3B-A006-743F0F84911E", "RAID"},
 };
 
 #endif // PTTYPES_HPP

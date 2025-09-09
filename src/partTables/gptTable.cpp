@@ -83,3 +83,11 @@ void GPTPartitionTable::printInfo() const {
         partition.printInfo();
     }
 }
+
+std::vector<Partition*> GPTPartitionTable::getPartitions() const {
+    std::vector<Partition*> partPtrs;
+    for (const auto& part : partitions) {
+        partPtrs.push_back(const_cast<GPTPartition*>(&part));
+    }
+    return partPtrs;
+}

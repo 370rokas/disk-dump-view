@@ -43,3 +43,11 @@ void MBRPartitionTable::printInfo() const {
         partition.printInfo();
     }
 }
+
+std::vector<Partition*> MBRPartitionTable::getPartitions() const {
+    std::vector<Partition*> partPtrs;
+    for (const auto& part : partitions) {
+        partPtrs.push_back(const_cast<MBRPartition*>(&part));
+    }
+    return partPtrs;
+}

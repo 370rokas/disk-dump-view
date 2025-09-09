@@ -5,6 +5,7 @@
 #define DISK_LOCATION_DIR "/test_disks/"
 
 #include "partTables/partitionTables.hpp"
+#include "fs/fsMagicNums.hpp"
 
 int main() {
     // Loop thru all disks
@@ -64,8 +65,18 @@ int main() {
         }
 
         std::cout << "----------------------------------------" << std::endl;
-        table->printInfo();
-        std::cout << "----------------------------------------" << std::endl;
+
+        // Identify filesystems on each partition
+        for (const auto& part : table->getPartitions()) {
+            std::cout << "Identifying filesystem for partition:" << std::endl;
+            part->printInfo();
+
+            std::streamoff partOffset = part->startSector * 512;
+            std::string fsType = identifyFilesystem(f, partOffset);
+
+            std::cout << "Detected Filesystem: " << fsType << std::endl;
+            std::cout << "----------------------------------------" << std::endl;
+        }
 
         // Cleanup
         f.close();

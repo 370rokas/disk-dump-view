@@ -33,7 +33,7 @@ public:
     }
 
     void printInfo() const override {
-        std::cout << "MBR Partition - Type: 0x" << std::hex << static_cast<int>(type) << std::dec
+        std::cout << "MBR - Type: 0x" << std::hex << static_cast<int>(type) << std::dec
                   << ", Start: " << startSector << ", Size: " << sectorCount
                   << ", Bootable: " << bootable << "\n";
     }
@@ -52,12 +52,22 @@ public:
         : Partition(start, count), typeGUID(typeGUID), uniqueGUID(uniqueGUID), attributes(attrs), name(name) {}
 
     void printInfo() const override {
-        std::cout << "GPT Partition - Type GUID: " << typeGUID
-                  << ", Unique GUID: " << uniqueGUID
+        std::cout << "GPT - Type: " << getTypeName()
+                  << ", GUID: " << uniqueGUID
                   << ", Start: " << startSector
                   << ", Size: " << sectorCount
                   << ", Attributes: 0x" << std::hex << attributes << std::dec
                   << "\n";
+    }
+
+    inline std::string getTypeName() const {
+        auto it = GPTPartitionTypeGUIDs.find(typeGUID);
+        
+        if (it != GPTPartitionTypeGUIDs.end()) {
+            return it->second;
+        } else {
+            return "UNKNOWN";
+        }
     }
 };
 

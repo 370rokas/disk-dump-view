@@ -7,12 +7,6 @@
 
 #include "../partition.hpp"
 
-enum PartitionScheme {
-    PARTITION_SCHEME_MBR,
-    PARTITION_SCHEME_GPT,
-    PARTITION_SCHEME_UNKNOWN
-};
-
 /**
     * Detects the partition scheme of a disk image.
     * @param data Pointer to the beginning of the disk image data.
@@ -24,6 +18,8 @@ PartitionScheme detectPartitionScheme(const char* data, size_t size);
 class PartitionTable {
     public:
         virtual ~PartitionTable() = default;
+
+        virtual std::vector<Partition*> getPartitions() const = 0;
         
         virtual void printInfo() const = 0;
 };
@@ -33,6 +29,7 @@ class MBRPartitionTable : public PartitionTable {
         MBRPartitionTable(const char* data, size_t size);
 
         std::vector<MBRPartition> partitions; // MBR supports up to 4 primary partitions
+        std::vector<Partition*> getPartitions() const override;
 
         void printInfo() const override;
 };
@@ -42,6 +39,7 @@ class GPTPartitionTable : public PartitionTable {
         GPTPartitionTable(std::istream& stream);
 
         std::vector<GPTPartition> partitions; // GPT supports up to 128 primary partitions
+        std::vector<Partition*> getPartitions() const override;
 
         void printInfo() const override;
 };
