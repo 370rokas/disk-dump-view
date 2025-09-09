@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "llvm-vs-code-extensions.vscode-clangd",
+        "ms-vscode.cmake-tools",
+        "cheshirekow.cmake-format",
+        "CS128.cs128-clang-tidy",
+        "webfreak.debug",
+    ]
+}
