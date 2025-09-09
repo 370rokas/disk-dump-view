@@ -1,4 +1,4 @@
-#include "partitionSchemes.hpp"
+#include "partitionTables.hpp"
 
 #include <string>
 #include <cstdint>

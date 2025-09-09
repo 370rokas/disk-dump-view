@@ -3,14 +3,6 @@
 
 Learning project where I seek to learn more about partitions, filesystems, etc..
 
-TODO:
--[x] Identify partition tables.
--[ ] Parse partition table data.
--[ ] ID partitions.
--[ ] Read partition filesystems.
--[ ] Extract files
--[ ] ..? (coming soon)
-
 ## Testing
 
 ```bash
@@ -18,3 +10,11 @@ TODO:
 sudo dnf install dosfstools
 sudo bash scripts/createTestDrives.sh
 ```
+
+## TODO:
+- [x] Identify partition tables.
+- [x] Parse partition table data.
+- [ ] Recognise filesystems.
+- [ ] Read partition filesystems.
+- [ ] Extract files?
+- [ ] ..? (coming soon)
