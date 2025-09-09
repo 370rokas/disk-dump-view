@@ -30,3 +30,10 @@
 *.exe
 *.out
 *.app
+
+# Other files
+*.log
+.cache/
+dumps/
+build/
+test_disks/
