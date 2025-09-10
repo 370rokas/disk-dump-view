@@ -7,6 +7,7 @@
         "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
     },
     "files.associations": {
-        ".clang-format": "yaml"
+        ".clang-format": "yaml",
+        ".clangd": "yaml"
     }
 }

@@ -36,7 +36,7 @@ std::string identifyFilesystem(std::istream& stream, std::streamoff baseOffset =
 using FSMap = std::unordered_map<FSSignatureKey, std::string, FSSignatureKeyHash>;
 
 static const FSMap fsMagicNums = {
-	{{0x438, "\x53\xEF"}, "EXT2/EXT3/EXT4"}, // little-endian 0xEF53
+	{{0x438, "\x53\xEF"}, "EXT4"}, // little-endian 0xEF53
 	{{0x00, "XFSB"}, "XFS"},
 };
 

@@ -36,4 +36,5 @@
 .cache/
 dumps/
 build/
+disks/
 test_disks/

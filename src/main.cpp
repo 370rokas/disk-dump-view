@@ -4,6 +4,7 @@
 
 #define DISK_LOCATION_DIR "/test_disks/"
 
+#include "fs/ext4.hpp"
 #include "fs/fsMagicNums.hpp"
 #include "partTables/partitionTables.hpp"
 
@@ -75,6 +76,20 @@ int main() {
 			std::string fsType = identifyFilesystem(f, partOffset);
 
 			std::cout << "Detected Filesystem: " << fsType << std::endl;
+
+			if (fsType == "EXT4") {
+				FS_EXT4 ext4fs(f, partOffset);
+				std::cout << "Inodes: " << ext4fs.superblock.s_free_inodes_count << "/"
+						  << ext4fs.superblock.s_inodes_count << std::endl;
+
+				std::cout << "Blocks: " << ext4fs.superblock.s_free_blocks_count_lo << "/"
+						  << ext4fs.superblock.s_blocks_count_lo << std::endl;
+
+				std::cout << "Block size: " << (1024U << ext4fs.superblock.s_log_block_size) << " bytes" << std::endl;
+
+				std::cout << "Inode size: " << ext4fs.superblock.s_inode_size << " bytes" << std::endl;
+			}
+
 			std::cout << "----------------------------------------" << std::endl;
 		}
 
